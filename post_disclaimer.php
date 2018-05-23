@@ -20,7 +20,7 @@ add_filter('the_content','post_disclaimer_add');
 
 function post_disclaimer_menu(){
 
-	add_menu_page( 'Disclaimer - Settings', 'Disclaimer','manage_options', 'global_disclaimer_menu_item' , '_global_disclaimer_settings', plugins_url( 'post_disclaimer/images/ico-16x16.png' ) );
+	add_menu_page( 'Disclaimer - Settings', 'Disclaimer','manage_options', 'global_disclaimer_menu_item' , '_global_disclaimer_settings', 'dashicons-info' );
 
 }
 
@@ -63,7 +63,7 @@ function post_disclaimer_add($content) {
 	}
 	$text = isset($post_disclaimer) ? stripslashes( $post_disclaimer ) : '';
 
-	if(is_single() && !is_home()) {
+	if(is_single() && !is_home() && strstr($content, $text)===FALSE) {
 		$content .= $text;
 	}
 

@@ -4,7 +4,7 @@
 * Plugin Name: PostDisclaimer
 * Plugin URI: http://www.example.com
 * Description: Add Disclaimer for yours Posts
-* Version: 1.0.0
+* Version: 1.1.0
 * Author: Example
 * Author URI: http://www.example.com
 * License: GPL2
@@ -101,11 +101,13 @@ function post_disclaimer_metabox_save($post_id){
 	}
 }
 
-add_action( 'init', 'activate_au' );
-function activate_au()
+add_action( 'init', 'post_disclaimer_update' );
+function post_disclaimer_update()
 {
-	require_once ( 'wp_autoupdate.php' );
-	$plugin_current_version = '1.0.0';
+	if (!class_exists('WP_AutoUpdate')) 
+		require_once ( 'wp_autoupdate.php' );
+	
+	$plugin_current_version = '1.1.0';
 	$plugin_remote_path = 'https://wpdev.yoemprendo.online/update.php?plugin=post_disclaimer';
 	$plugin_slug = plugin_basename( __FILE__ );
 	$license_user = 'user';
